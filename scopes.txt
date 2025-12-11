@@ -1,0 +1,7 @@
+| Scope                 | Lifetime              | When It Runs                      | When It Dies                    |
+| ----------------------| --------------------- | --------------------------------- | ------------------------------- |
+| function (default)    | Once per test         | Before each test function         | After each test function        |
+| class                 | Once per class        | Before first test method in class | After last test method          |
+| module                | Once per module       | Before any test in that file      | After all tests in that file    |
+| package               | Once per package      | Before any test in the package    | After all tests in that package |
+| session               | Once per test session | Before any test starts            | After all tests finish          |
