@@ -4,6 +4,8 @@ import json
 import pytest
 from Utils.apiBase import APIUtils
 from pageObjects.loginPage import LoginPage
+from pageObjects.dashboardPage import DashboardPage
+
 with open(r'My_practice/playwright/Optimization_Practices/data/creden.json') as f:
     test_data = json.load(f)
     print(test_data)
@@ -14,8 +16,7 @@ def test_method(playwright:Playwright, current_user_detail):
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
-    api_utils = APIUtils()
-    orderId = api_utils.createOrder(playwright,current_user_detail)
+
 
     userEmail = current_user_detail['userEmail']
     userPassword = current_user_detail["userPassword"]
@@ -24,5 +25,6 @@ def test_method(playwright:Playwright, current_user_detail):
     loginpage.navigate()
     loginpage.login(userEmail,userPassword)
 
-    order_page_button = page.get_by_role("button").filter(has_text="ORDERS")
-    order_page_button.click()
+    dashboardPage = DashboardPage(page)
+    dashboardPage.selectOrderNavLink()
+
