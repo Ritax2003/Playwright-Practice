@@ -1,7 +1,12 @@
 from playwright.sync_api import Playwright,expect
 from time import sleep
-
-#selectorshub extension for chrome
+import pytest
+#selectorshub extension for chrome , run with pytest -m smoke
+#pytest -k <pattern of test file names. like any word that is common>
+#for parallel execution : pytest-xdist
+# pytest -n auto : for all test parallel
+# pytest -n 3 : max 3 tests can run parallel
+@pytest.mark.smoke
 def test_assertion(playwright:Playwright):
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
